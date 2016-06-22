@@ -1,0 +1,43 @@
+{
+  "name": "airborne",
+  "version": "1.0.0",
+  "description": "A database of all flying objects.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arrc/airborne.git"
+  },
+  "keywords": [
+    "aviation", "aeroplane", "helicopter", "drone", "cessna", "cessna 172", "boeing", "airbus", "boeing 747", "airbus A380"
+  ],
+  "author": "arrC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arrc/airborne/issues"
+  },
+  "homepage": "https://github.com/arrc/airborne#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.2",
+    "chance": "^0.8.0",
+    "consolidate": "^0.13.1",
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "express-jwt": "^3.4.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-sass": "^2.3.2",
+    "jsonwebtoken": "^5.7.0",
+    "kerberos": "0.0.17",
+    "lodash": "^3.10.1",
+    "method-override": "^2.3.5",
+    "mongodb-core": "^1.2.31",
+    "mongoose": "^4.5.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "swig": "^1.4.2"
+  }
+}
