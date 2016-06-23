@@ -1,0 +1,21 @@
+npm install --save chance express express-jwt gulp gulp-nodemon gulp-sass jsonwebtoken mongoose lodash passport passport-local swig mongoose
+bower install --save angular font-awesome angular-ui-router foundation angular-jwt ng-dialog ng-lodash angular-cache angular.pubsub ng-notify
+
+general - manufacturer, year, maiden flieght, series, production status, model, role, industry, type, catetgory, price
+dimensions - length, height, wingspan, wing area
+weight - empty wight, gross weight, max takeoff wight, max landing weight, max payload, full fuel payload
+performance - max cruise speed, stall speed, range, takeoff distance, groud roll, landing distance, service ceiling, max climb rate, maximum limit speed
+powerplant - manufacturer, model, power output, thrust, engine type
+interior - crew, max occupents,
+avionics -
+gallery -
+images - front, sides, top, airborne, takeoff
+
+TYPE
+single engine props, multi engine props, turboprops, jets, turbine helicopters, piston helicopters, amphibian, floats, light sports, experimental,
+bomber, fighter jet, agriculture, commuter, drone, vtol, commercial, very lisht jet, carrier
+
+ROLE: strike aircraft, multirole combat, utility
+INDUSTRY: civil, military, general
+CATEGORY: drone, space shuttle, helicopter, airplane, glider, uav, airship, balloon
+ENGINE TYPE: piston engine, turboprop, electric motor, single engine
