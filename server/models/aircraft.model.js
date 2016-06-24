@@ -3,13 +3,13 @@ var mongoose = require('mongoose');
 
 let AirCraftSchema = mongoose.Schema({
   general: {
+    model:                String,
     description:          String,
     category:             [String],
     aircraftManufacturer: [String],
     year:                 Number,
     maidenFlight:         Number,
     series:               String,
-    model:                String,
     productionStatus:     String,
     role:                 [String],
     industry:             [String],
@@ -69,6 +69,5 @@ let AirCraftSchema = mongoose.Schema({
     landing:  {image: String, source: String},
   }
 });
-
 
 module.exports = mongoose.model('AirCraft', AirCraftSchema);

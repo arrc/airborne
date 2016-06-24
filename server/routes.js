@@ -3,6 +3,7 @@
 module.exports = function(app){
 	var main = require('./controllers/main.controller.js');
 	var user = require('./controllers/user.controller.js');
+	var admin = require('./controllers/admin.controller');
 	var editor = require('./controllers/admin.editor.controller');
 
 	// 'CORE' ----------------------------
@@ -13,7 +14,10 @@ module.exports = function(app){
 	app.route('/signup').post(user.signup);
 	app.route('/api/profile').get(user.profile);
 
-	// 'ADMIN'
+	// ADMIN
+	app.use('/api/admin', admin.hasAuthorization);
+
+	// 'EDITOR'
   app.route('/api/admin/editor').post(editor.createCamp);
   app.route('/api/admin/editor').get(editor.retriveCamps);
   app.route('/api/admin/editor/:airCraftId').get(editor.retriveCamp);

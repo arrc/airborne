@@ -1,89 +1,71 @@
 'use strict';
 
 let User = require('../models/user.model.js'),
-  Camp = require('../models/camp.model.js'),
+  Aircraft = require('../models/aircraft.model'),
   _ = require('lodash'),
   moment = require('moment');
 
 // 1- create camps (maps)
 // state, address, date, googleMapUrl, description
-exports.createCamp = function(req, res){
-  var b = req.body;
-  var datetime = moment(b.date + " " + b.time, "DD/MM/YYYY hh:mm:a").toISOString();
-  var data = {
-    state: b.state,
-    address: b.address,
-    googleMapUrl: b.googleMapUrl,
-    description: b.description,
-    datetime: datetime
-  };
+exports.createAircraft = function(req, res){
 
-  Camp.create(data, function(err, camp){
-    if (err || !camp) {
-      return res.status(400).json({message: 'Error finding camp.'});
+  Aircraft.create(req.body, function(err, aircraft){
+    if (err || !aircraft) {
+      return res.status(400).json({message: 'Error finding aircraft.'});
     } else {
-      console.log(camp);
-      return res.status(200).json({ data: camp, message: 'success'});
+      console.log(aircraft);
+      return res.status(200).json({ data: aircraft, message: 'success'});
     }
   });
 };
 
 // update camp
 exports.updateCamp = function(req, res){
-  var b = req.body;
-  var datetime = moment(b.date + " " + b.time, "DD/MM/YYYY hh:mm:a").toISOString();
-  var data = {
-    state: b.state,
-    address: b.address,
-    googleMapUrl: b.googleMapUrl,
-    description: b.description,
-    datetime: datetime
-  };
-  var camp = req.camp;
-  camp = _.extend(camp, data);
-  camp.save(function(err, doc){
+  var aircraft = req.aircraft;
+  aircraft = _.extend(aircraft, req.body);
+  aircraft.save(function(err, doc){
     if (err || !doc) {
-      return res.status(400).json({message: 'Error finding doc.'});
+      return res.status(400).json({message: 'Error finding aircraft.'});
     } else {
       return res.status(200).json({ data: doc, message: 'success'});
     }
   });
 };
 
-// Single camp
-exports.retriveCamp = function(req, res){
-  return res.status(200).json({ data: req.camp, message: 'success'});
+// Single aircraft
+exports.retriveAircraft = function(req, res){
+  return res.status(200).json({ data: req.aircraft, message: 'success'});
 };
 
-// All camps
-exports.retriveCamps = function(req, res){
-  Camp.find({}).exec(function(err, camps){
-    if (err || !camps) {
-      return res.status(400).json({message: 'Error finding camps.'});
+// All aircraft
+exports.retriveAircrafts = function(req, res){
+  Aircraft.find({}).exec(function(err, aircraft){
+    if (err || !aircraft) {
+      return res.status(400).json({message: 'Error finding aircraft.'});
     } else {
-      return res.status(200).json({ data: camps, message: 'success'});
+      return res.status(200).json({ data: aircraft, message: 'success'});
     }
   });
 };
 
-// Delete camp
-exports.deletCamp = function(req, res){
-  var camp = req.camp;
-  camp.remove(function(err){
+// Delete aircraft
+exports.deleteAircraft = function(req, res){
+  var aircraft = req.aircraft;
+  aircraft.remove(function(err){
     if (err) {
-      return res.status(400).json({message: 'Error deleting camp.'});
+      return res.status(400).json({message: 'Error deleting aircraft.'});
     } else {
-      return res.status(200).json({ message: 'successfully deleted camp'});
+      return res.status(200).json({ message: 'successfully deleted aircraft'});
     }
   });
 };
 
-// campById
-exports.campById = function(req, res, next, campId){
-  Camp.findById(campId).exec(function(err, doc){
+// airCraftId
+exports.airCraftId = function(req, res, next, airCraftId){
+  Aircraft.findById(airCraftId).exec(function(err, doc){
     if (err) return next(err);
-		if (!doc) return next(new Error('Failed to load camp ' + campId));
-		req.camp = doc;
+		if (!doc) return next(new Error('Failed to load aircraft ' + airCraftId));
+		req.aircraft = doc;
 		next();
   });
 };

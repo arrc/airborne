@@ -6,10 +6,7 @@ var mongoose = require('mongoose'),
 let UserSchema =  mongoose.Schema({
   username: String,
   password: String,
-  firstName: String,
-  lastName: String,
   email: String,
-  gender: String,
   isActive: {type: Boolean, default: false},
   isAdmin: {type: Boolean, default: false},
 });
@@ -27,10 +24,6 @@ UserSchema.pre('save', function(next) {
   } else {
     next();
   }
-});
-
-UserSchema.virtual('fullName').get(function(){
-  return `${this.firstName} ${this.lastName}`;
 });
 
 UserSchema.methods.authenticate = function(passwordToMatch) {
