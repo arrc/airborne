@@ -17,5 +17,5 @@ bomber, fighter jet, agriculture, commuter, drone, vtol, commercial, very lisht 
 
 ROLE: strike aircraft, multirole combat, utility
 INDUSTRY: civil, military, general
-CATEGORY: drone, space shuttle, helicopter, airplane, glider, uav, airship, balloon
-ENGINE TYPE: piston engine, turboprop, electric motor, single engine
+CATEGORY: airplane, airship, balloon, drone, glider, helicopter, space shuttle, uav
+ENGINE TYPE: electric motor, piston engine, single engine, turboprop
