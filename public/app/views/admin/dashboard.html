@@ -1,0 +1,23 @@
+<section ng-controller="AdminCtrl as vm">
+
+  <div class="row">
+		<div class="large-6 large-centered columns">
+			<dl class="sub-nav">
+				<dd ui-sref-active="active">
+					<a ui-sref="admin.users">Users</a>
+				</dd>
+				<dd ui-sref-active="active">
+					<a ui-sref="admin.editor">Editor</a>
+				</dd>
+        <dd ui-sref-active="active">
+					<a ui-sref="admin.spams">Spam</a>
+				</dd>
+        <dd ui-sref-active="active">
+					<a ui-sref="admin.reports">Reports</a>
+				</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div ui-view></div>
+</section>

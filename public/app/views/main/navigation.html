@@ -13,12 +13,16 @@
       <ul class="right">
         <li><a ng-hide="vm.isAuth" ui-sref="login">Login</a></li>
         <li><a ng-show="vm.isAuth" ui-sref="profile">profile</a></li>
+        <li><a ng-show="vm.isAdmin" ui-sref="admin">Admin</a></li>
         <li><a ng-show="vm.isAuth" ng-click="vm.logout()">Logout</a></li>
       </ul>
 
       <!-- Left Nav Section -->
       <ul class="left">
         <li><a ui-sref="home">Home</a></li>
+        <li><a ui-sref="aircrafts">Aircrafts</a></li>
+        <li><a ui-sref="search">Search</a></li>
+        <li><a ui-sref="admin.editor.create">Editor</a></li>
       </ul>
     </section>
   </nav>

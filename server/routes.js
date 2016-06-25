@@ -18,12 +18,11 @@ module.exports = function(app){
 	app.use('/api/admin', admin.hasAuthorization);
 
 	// 'EDITOR'
-  app.route('/api/admin/editor').post(editor.createCamp);
-  app.route('/api/admin/editor').get(editor.retriveCamps);
-  app.route('/api/admin/editor/:airCraftId').get(editor.retriveCamp);
-  app.route('/api/admin/editor/:airCraftId').put(editor.updateCamp);
-  app.route('/api/admin/editor/:airCraftId').delete(editor.deletCamp);
+	app.route('/api/admin/editor/constants').get(editor.constants);
+  app.route('/api/admin/editor').post(editor.createAircraft);
+  app.route('/api/admin/editor').get(editor.retriveAircrafts);
+  app.route('/api/admin/editor/:airCraftId').get(editor.retriveAircraft);
+  app.route('/api/admin/editor/:airCraftId').put(editor.updateAircraft);
+  app.route('/api/admin/editor/:airCraftId').delete(editor.deleteAircraft);
   app.param('airCraftId', editor.airCraftId);
-
-
 };

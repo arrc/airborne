@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="large-12 columns">
+    <ul class="small-block-grid-4">
+        <!-- <pre>{{context}}|{{ constants }}</pre>
+        <pre>{{model}}</pre>
+        <li ng-repeat="item in constants">
+          <input type="checkbox" id="{{ item }}" checklist-model="model.selectedItems" checklist-value="item">
+          <label for="{{ item }}">{{item}}</label>
+        </li> -->
+        <pre>{{ vm.constants }}</pre>
+        <pre>{{vm.ngDialogData}}</pre>
+        <li ng-repeat="item in vm.constants">
+          <input type="checkbox" id="{{ item }}" checklist-model="vm.ngDialogData.selectedItems" checklist-value="item">
+          <label for="{{ item }}">{{item}}</label>
+        </li>
+    </ul>
+  </div>
+</div>

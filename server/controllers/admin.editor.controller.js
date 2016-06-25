@@ -2,16 +2,30 @@
 
 let User = require('../models/user.model.js'),
   Aircraft = require('../models/aircraft.model'),
-  _ = require('lodash'),
-  moment = require('moment');
+  constants = require('../config/constants'),
+  _ = require('lodash');
 
-// 1- create camps (maps)
-// state, address, date, googleMapUrl, description
+// Single aircraft
+exports.constants = function(req, res){
+  let sortedConstants = {
+    roles: constants.roles.sort(),
+    industries: constants.industries.sort(),
+    aircraftTypes: constants.aircraftTypes.sort(),
+    categories: constants.categories.sort(),
+    engineType: constants.engineType.sort(),
+    airCraftManufacturers: constants.airCraftManufacturers.sort(),
+    engineManufacturers: constants.engineManufacturers.sort(),
+    productionStatus: constants.productionStatus.sort()
+  };
+  return res.status(200).json({ data: sortedConstants, message: 'success'});
+};
+
+//  create aircraft
 exports.createAircraft = function(req, res){
-
+  console.log(req.body);
   Aircraft.create(req.body, function(err, aircraft){
     if (err || !aircraft) {
-      return res.status(400).json({message: 'Error finding aircraft.'});
+      return res.status(400).json({error: err, message: 'Error creating aircraft.'});
     } else {
       console.log(aircraft);
       return res.status(200).json({ data: aircraft, message: 'success'});
@@ -19,8 +33,8 @@ exports.createAircraft = function(req, res){
   });
 };
 
-// update camp
-exports.updateCamp = function(req, res){
+// update aircraft
+exports.updateAircraft = function(req, res){
   var aircraft = req.aircraft;
   aircraft = _.extend(aircraft, req.body);
   aircraft.save(function(err, doc){

@@ -2,18 +2,19 @@
 var mongoose = require('mongoose');
 
 let AirCraftSchema = mongoose.Schema({
+  test: String,
   general: {
     model:                String,
     description:          String,
-    category:             [String],
-    aircraftManufacturer: [String],
     year:                 Number,
     maidenFlight:         Number,
     series:               String,
     productionStatus:     String,
-    role:                 [String],
-    industry:             [String],
-    type:                 [String]
+    categories:             [String],
+    airCraftManufacturers: [String],
+    roles:                 [String],
+    industries:             [String],
+    aircraftTypes:         [String]
   },
   interior: {
     crew:       Number,

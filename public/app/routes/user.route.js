@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tbmp').config(['$stateProvider', function($stateProvider){
+angular.module('Airborne').config(['$stateProvider', function($stateProvider){
   $stateProvider
   .state('login', {
     url: '/login',

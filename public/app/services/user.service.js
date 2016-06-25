@@ -60,7 +60,7 @@
 	/* ==========================================================
 		setup
 	============================================================ */
-	angular.module('tbmp').factory('User',[
+	angular.module('Airborne').factory('User',[
     '$http',
 		'$q',
 		'$window',

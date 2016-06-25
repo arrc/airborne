@@ -14,7 +14,7 @@
 	/* ==========================================================
 		setup
 	============================================================ */
-	angular.module('tbmp').controller('UserCtrl',[
+	angular.module('Airborne').controller('UserCtrl',[
 		'$http',
     'User',
 		UserCtrl

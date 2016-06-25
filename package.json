@@ -4,6 +4,7 @@
   "description": "A database of all flying objects.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,7 +12,16 @@
     "url": "git+https://github.com/arrc/airborne.git"
   },
   "keywords": [
-    "aviation", "aeroplane", "helicopter", "drone", "cessna", "cessna 172", "boeing", "airbus", "boeing 747", "airbus A380"
+    "aviation",
+    "aeroplane",
+    "helicopter",
+    "drone",
+    "cessna",
+    "cessna 172",
+    "boeing",
+    "airbus",
+    "boeing 747",
+    "airbus A380"
   ],
   "author": "arrC",
   "license": "ISC",
@@ -34,6 +44,7 @@
     "kerberos": "0.0.17",
     "lodash": "^3.10.1",
     "method-override": "^2.3.5",
+    "momentjs": "^1.1.9",
     "mongodb-core": "^1.2.31",
     "mongoose": "^4.5.1",
     "passport": "^0.3.2",
