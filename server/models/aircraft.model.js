@@ -24,7 +24,7 @@ let AirCraftSchema = mongoose.Schema({
   dimensions: {
     length:   Number,
     height:   Number,
-    wingspan: Number,
+    wingSpan: Number,
     wingArea: Number
   },
   weight: {

@@ -6,110 +6,15 @@
 
         <!-- Form -->
         <form ng-submit="vm.createAircraft()">
-          <fieldset>
-            <legend>General</legend>
-
-            <!-- model name -->
-            <div class="row">
-              <div class="large-8 columns">
-                <label for="model">Model name<input type="text" id="model" ng-model="vm.editorFormData.general.model"></label>
-              </div>
-            </div>
-
-            <!-- Description -->
-            <div class="row">
-              <div class="large-8 columns">
-                <label for="description">Description <textarea id="description" ng-model="vm.editorFormData.general.description"></textarea></label>
-              </div>
-            </div>
-
-            <!-- Year and maiden flight -->
-            <div class="row">
-              <div class="large-6 columns">
-                <label for="year">Year
-                  <select id="year" ng-model="vm.editorFormData.general.year">
-                    <option ng-repeat="year in vm.yearsArray" value="{{year}}">{{year}}</option>
-                  </select>
-                </label>
-              </div>
-              <div class="large-6 columns">
-                <label for="maidenFlight">Maiden Flight
-                  <select id="maidenFlight" ng-model="vm.editorFormData.general.maidenFlight">
-                    <option ng-repeat="year in vm.yearsArray" value="{{year}}">{{year}}</option>
-                  </select>
-                </label>
-              </div>
-            </div>
-
-            <!-- TODO: series -->
-
-            <!-- production status -->
-            <div class="row">
-              <div class="large-6 columns">
-                <label for="productionStatus">Production Status</label>
-                <label  ng-repeat="status in vm.constants.productionStatus" for="{{status}}">
-                  <input value="{{status}}" type="radio" id="{{status}}"
-                    ng-model="vm.editorFormData.general.productionStatus">
-                  {{status}}
-                </label>
-              </div>
-            </div>
-
-            <!-- categories -->
-            <div class="row">
-              <div class="large-12 columns">
-                <label for="categories">Categories</label>
-                <input type="text"  ng-click="vm.launchModalDialog('categories', vm.constants.categories)" id="categories" ng-model="vm.editorFormData.general.roles" placeholder="{{vm.editorFormData.general.roles}}">
-                <!-- <p id="categories" ng-model="vm.editorFormData.general.categories">{{ vm.editorFormData.general.categories }}</p> -->
-              </div>
-            </div>
-
-            <!-- airCraftManufacturers -->
-            <div class="row">
-              <div class="large-12 columns">
-                <label for="airCraftManufacturers">Manufacturers</label>
-
-                <input type="text" id="airCraftManufacturers" ng-model="vm.editorFormData.general.airCraftManufacturers"
-                  placeholder="{{vm.editorFormData.general.airCraftManufacturers}}"> <button type="button"  ng-click="vm.toggleConstantsMenu('airCraftManufacturersList')">Toggle</button>
-
-                <!-- list -->
-                <ul id="airCraftManufacturersList" class="small-block-grid-4">
-                    <li ng-repeat="manufacturer in vm.constants.airCraftManufacturers">
-                      <input type="checkbox" checklist-model="vm.editorFormData.airCraftManufacturers" checklist-value="manufacturer">
-                      <label>{{manufacturer}}</label>
-                    </li>
-                </ul>
-
-              </div>
-            </div>
-
-            <!-- roles -->
-            <div class="row">
-              <div class="large-12 columns">
-                <label for="roles">Roles</label>
-
-                <input type="text" id="roles" ng-model="vm.editorFormData.general.roles"
-                  placeholder="{{vm.editorFormData.general.roles}}"> <button type="button"  ng-click="vm.toggleConstantsMenu('rolesList')">Toggle</button>
-
-                <p><span ng-repeat="role in vm.editorFormData.general.roles">{{role}}, </span></p>
-                <!-- list -->
-                <ul id="rolesList" class="small-block-grid-4">
-                    <li ng-repeat="role in vm.constants.roles">
-                      <input type="checkbox" id="{{role}}" checklist-model="vm.editorFormData.general.roles" checklist-value="role">
-                      <label for="{{role}}">{{role}}</label>
-                    </li>
-                </ul>
-
-              </div>
-            </div>
-
-            <!-- industries -->
-            <!-- aircraftTypes -->
-          </fieldset>
+          <section onload="vm.toggleConstantsInitialState()" ng-include="'app/views/admin/editor/create.general.html'"></section>
+          <section ng-include="'app/views/admin/editor/create.interior.html'"></section>
+          <section ng-include="'app/views/admin/editor/create.weight.html'"></section>
+          <section ng-include="'app/views/admin/editor/create.dimensions.html'"></section>
+          <section ng-include="'app/views/admin/editor/create.performance.html'"></section>
         </form>
 
-      <pre>{{vm.editorFormData}}</pre>
 
     </div>
   </div>
+  <pre>{{vm.editorFormData}}</pre>
 </section>

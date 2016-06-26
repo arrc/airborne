@@ -13,7 +13,23 @@
         years.push(startYear++);
       }
       _this.yearsArray = years.reverse();
+
     }());
+
+    _this.toggleConstantsMenu = function(id){
+      angular.element('#'+id).slideToggle()
+    };
+
+    _this.toggleConstantsInitialState = function(){
+      let selectors = [
+        "#airCraftManufacturersList",
+        "#rolesList",
+        "#industriesList",
+        "#aircraftTypesList"
+      ].join(',');
+      angular.element(selectors).slideUp();
+    };
+    _this.toggleConstantsInitialState();
 
     // _this.constants = Editor.retriveConstants();
     _this.retriveConstants = function(){
@@ -77,12 +93,16 @@
       });
     };
 
-    _this.toggleConstantsMenu = function(id){
-      angular.element('#'+id).slideToggle()
-    };
 
-    (function() {
-      angular.element("#airCraftManufacturersList, #rolesList").slideUp();
+
+    (function() { //"#airCraftManufacturersList, #rolesList, #industriesList, aircraftTypesList"
+      // let selectors = [
+      //   "#airCraftManufacturersList",
+      //   "#rolesList",
+      //   "#industriesList",
+      //   "#aircraftTypesList"
+      // ].join(',');
+      // angular.element(selectors).slideUp();
     }());
 	}; // END
 

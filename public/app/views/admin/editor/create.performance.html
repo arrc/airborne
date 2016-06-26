@@ -1,0 +1,61 @@
+<fieldset>
+  <legend>Performance</legend>
+
+  <div class="row">
+    <div class="large-6 columns">
+      <label for="maxCruiseSpeed">Max cruise speed<input type="text" id="maxCruiseSpeed" ng-model="vm.editorFormData.performance.maxCruiseSpeed"></label>
+    </div>
+
+    <div class="large-6 columns">
+      <label for="stallSpeed">Stall speed<input type="text" id="stallSpeed" ng-model="vm.editorFormData.performance.stallSpeed"></label>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <label for="range">Range<input type="text" id="range" ng-model="vm.editorFormData.performance.range"></label>
+      </div>
+
+      <div class="large-6 columns">
+        <label for="serviceCeiling">Service ceilng<input type="text" id="serviceCeiling" ng-model="vm.editorFormData.performance.serviceCeiling"></label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <label for="maxClimbRate">Max climb rate<input type="text" id="maxClimbRate" ng-model="vm.editorFormData.performance.maxClimbRate"></label>
+      </div>
+
+      <div class="large-6 columns">
+        <label for="maxSpeedLimit">Max Speed limit<input type="text" id="maxSpeedLimit" ng-model="vm.editorFormData.performance.maxSpeedLimit"></label>
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>Takeoff</legend>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <label for="takeOffDistance">Take off distance<input type="text" id="takeOffDistance" ng-model="vm.editorFormData.performance.takeOff.takeOffDistance"></label>
+        </div>
+
+        <div class="large-6 columns">
+          <label for="groundRoll">Ground roll<input type="text" id="groundRoll" ng-model="vm.editorFormData.performance.takeOff.groundRoll"></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Landing</legend>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <label for="landingDistance">Landing distance<input type="text" id="landingDistance" ng-model="vm.editorFormData.performance.landing.landingDistance"></label>
+        </div>
+
+        <div class="large-6 columns">
+          <label for="groundRoll">Ground roll<input type="text" id="groundRoll" ng-model="vm.editorFormData.performance.landing.groundRoll"></label>
+        </div>
+      </div>
+    </fieldset>
+</fieldset>

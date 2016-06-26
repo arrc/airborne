@@ -1,0 +1,129 @@
+<fieldset>
+  <legend>General</legend>
+
+  <!-- model name -->
+  <div class="row">
+    <div class="large-8 columns">
+      <label for="model">Model name<input type="text" id="model" ng-model="vm.editorFormData.general.model"></label>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="row">
+    <div class="large-8 columns">
+      <label for="description">Description <textarea id="description" ng-model="vm.editorFormData.general.description"></textarea></label>
+    </div>
+  </div>
+
+  <!-- Year and maiden flight -->
+  <div class="row">
+    <div class="large-6 columns">
+      <label for="year">Year
+        <select id="year" ng-model="vm.editorFormData.general.year">
+          <option ng-repeat="year in vm.yearsArray" value="{{year}}">{{year}}</option>
+        </select>
+      </label>
+    </div>
+    <div class="large-6 columns">
+      <label for="maidenFlight">Maiden Flight
+        <select id="maidenFlight" ng-model="vm.editorFormData.general.maidenFlight">
+          <option ng-repeat="year in vm.yearsArray" value="{{year}}">{{year}}</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <!-- TODO: series -->
+
+  <!-- production status -->
+  <div class="row">
+    <div class="large-6 columns">
+      <label for="productionStatus">Production Status</label>
+      <label  ng-repeat="status in vm.constants.productionStatus" for="{{status}}">
+        <input value="{{status}}" type="radio" id="{{status}}"
+          ng-model="vm.editorFormData.general.productionStatus">
+        {{status}}
+      </label>
+    </div>
+  </div>
+
+  <!-- categories -->
+  <div class="row">
+    <div class="large-12 columns">
+      <label for="categories">Categories</label>
+      <input type="text"  ng-click="vm.launchModalDialog('categories', vm.constants.categories)" id="categories" ng-model="vm.editorFormData.general.roles" placeholder="{{vm.editorFormData.general.roles}}">
+      <!-- <p id="categories" ng-model="vm.editorFormData.general.categories">{{ vm.editorFormData.general.categories }}</p> -->
+    </div>
+  </div>
+
+  <!-- airCraftManufacturers -->
+  <div class="row">
+    <div class="large-12 columns">
+      <label ng-click="vm.toggleConstantsMenu('airCraftManufacturersList')" for="airCraftManufacturers">Manufacturers</label>
+
+      <p ng-click="vm.toggleConstantsMenu('airCraftManufacturersList')"><span ng-repeat="manufacturer in vm.editorFormData.general.airCraftManufacturers">{{manufacturer}}, </span></p>
+
+      <!-- list -->
+      <ul id="airCraftManufacturersList" class="small-block-grid-4">
+          <li ng-repeat="manufacturer in vm.constants.airCraftManufacturers">
+            <input type="checkbox" id="{{manufacturer}}" checklist-model="vm.editorFormData.general.airCraftManufacturers" checklist-value="manufacturer">
+            <label for="{{manufacturer}}">{{manufacturer}}</label>
+          </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- roles -->
+  <div class="row">
+    <div class="large-12 columns">
+      <label ng-click="vm.toggleConstantsMenu('rolesList')" for="roles">Roles</label>
+
+      <p ng-click="vm.toggleConstantsMenu('rolesList')"><span ng-repeat="role in vm.editorFormData.general.roles">{{role}}, </span></p>
+      <!-- list -->
+      <ul id="rolesList" class="small-block-grid-4">
+          <li ng-repeat="role in vm.constants.roles">
+            <input type="checkbox" id="{{role}}" checklist-model="vm.editorFormData.general.roles" checklist-value="role">
+            <label for="{{role}}">{{role}}</label>
+          </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- industries -->
+  <div class="row">
+    <div class="large-12 columns">
+      <label for="industries" ng-click="vm.toggleConstantsMenu('industriesList')">Industries</label>
+
+      <p ng-click="vm.toggleConstantsMenu('industriesList')"><span ng-repeat="industry in vm.editorFormData.general.industries">{{industry}}, </span></p>
+
+      <!-- list -->
+      <ul id="industriesList" class="small-block-grid-4">
+          <li ng-repeat="industry in vm.constants.industries">
+            <input type="checkbox" id="{{industry}}" checklist-model="vm.editorFormData.general.industries" checklist-value="industry">
+            <label for="{{industry}}">{{industry}}</label>
+          </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- aircraftTypes -->
+  <div class="row">
+    <div class="large-12 columns">
+      <label for="aircraftTypes" ng-click="vm.toggleConstantsMenu('aircraftTypesList')">Aircraft type</label>
+
+      <p ng-click="vm.toggleConstantsMenu('aircraftTypesList')"><span ng-repeat="type in vm.editorFormData.general.aircraftTypes">{{type}}, </span></p>
+
+      <!-- list -->
+      <ul id="aircraftTypesList" class="small-block-grid-4">
+          <li ng-repeat="type in vm.constants.aircraftTypes">
+            <input type="checkbox" id="{{type}}" checklist-model="vm.editorFormData.general.aircraftTypes" checklist-value="type">
+            <label for="{{type}}">{{type}}</label>
+          </li>
+      </ul>
+
+    </div>
+  </div>
+</fieldset>
