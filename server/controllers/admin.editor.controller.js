@@ -12,7 +12,7 @@ exports.constants = function(req, res){
     industries: constants.industries.sort(),
     aircraftTypes: constants.aircraftTypes.sort(),
     categories: constants.categories.sort(),
-    engineType: constants.engineType.sort(),
+    engineTypes: constants.engineTypes.sort(),
     airCraftManufacturers: constants.airCraftManufacturers.sort(),
     engineManufacturers: constants.engineManufacturers.sort(),
     productionStatus: constants.productionStatus.sort()

@@ -4,6 +4,7 @@ module.exports = function(app){
 	var main = require('./controllers/main.controller.js');
 	var user = require('./controllers/user.controller.js');
 	var admin = require('./controllers/admin.controller');
+	var aircraft = require('./controllers/aircraft.controller');
 	var editor = require('./controllers/admin.editor.controller');
 
 	// 'CORE' ----------------------------
@@ -13,6 +14,11 @@ module.exports = function(app){
 	app.route('/login').post(user.login);
 	app.route('/signup').post(user.signup);
 	app.route('/api/profile').get(user.profile);
+
+	// 'AIRCRAFT'
+	app.route('/api/aircrafts').get(aircraft.getAircrafts);
+	app.route('/api/aircrafts/:airCraftId').get(aircraft.getAircraft);
+	app.route('/api/aircrafts/search').get(aircraft.searchAircrafts);
 
 	// ADMIN
 	app.use('/api/admin', admin.hasAuthorization);

@@ -19,7 +19,7 @@ let aircraftTypes = ['Agriculture', 'Amphibian', 'Bomber', 'Carrier', 'Commercia
 let categories = ['Airplane', 'Airship', 'Balloon', 'Drone', 'Glider', 'Helicopter', 'Space shuttle', 'UAV'];
 
 // ENGINE TYPE
-let engineType = ['Electric motor', 'Piston engine', 'Eingle engine', 'Turboprop'];
+let engineTypes = ['Electric motor', 'Piston engine', 'Single engine', 'Turboprop'];
 
 // PRODUCTION STATUS
 let productionStatus = ['In production', 'In development', 'Out of production'];
@@ -43,7 +43,7 @@ module.exports = {
   industries: industries,
   aircraftTypes: aircraftTypes,
   categories: categories,
-  engineType: engineType,
+  engineTypes: engineTypes,
   airCraftManufacturers: airCraftManufacturers,
   engineManufacturers: engineManufacturers,
   productionStatus: productionStatus

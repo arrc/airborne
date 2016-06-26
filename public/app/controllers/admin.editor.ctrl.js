@@ -44,11 +44,11 @@
 // create aircraft
     _this.createAircraft = function(){
       console.log(_this.editorFormData);
-      // Editor.createAircraft(_this.editorFormData).then(function(data){
-      //   console.log(data);
-      // }, function(error){
-      //   console.error(error);
-      // });
+      Editor.createAircraft(_this.editorFormData).then(function(data){
+        console.log(data);
+      }, function(error){
+        console.error(error);
+      });
     };
 
 // retrive aircrafts

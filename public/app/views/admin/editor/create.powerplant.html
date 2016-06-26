@@ -1,0 +1,36 @@
+<fieldset>
+  <legend>Powerplant</legend>
+
+  <div class="row">
+    <div class="large-6 columns">
+      <label for="engineManufacturers">Engine Manufacturers
+        <select id="engineManufacturers" ng-model="vm.editorFormData.powerPlant.engineManufacturers">
+          <option ng-repeat="engineManufacturer in vm.constants.engineManufacturers" value="{{engineManufacturer}}">{{engineManufacturer}}</option>
+        </select>
+      </label>
+    </div>
+    <div class="large-6 columns">
+      <label for="engineType">Engine Type
+        <select id="engineType" ng-model="vm.editorFormData.powerPlant.engineType">
+          <option ng-repeat="engineType in vm.constants.engineTypes" value="{{engineType}}">{{engineType}}</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <label for="engineModel">Engine model<input type="text" id="engineModel" ng-model="vm.editorFormData.powerPlant.engineModel"></label>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <label for="powerOutput">Power output<input type="text" id="powerOutput" ng-model="vm.editorFormData.powerPlant.powerOutput"></label>
+      </div>
+
+      <div class="large-6 columns">
+        <label for="thrust">Thrust<input type="text" id="thrust" ng-model="vm.editorFormData.powerPlant.thrust"></label>
+      </div>
+    </div>
+</fieldset>

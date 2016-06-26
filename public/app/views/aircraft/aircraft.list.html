@@ -1,0 +1,13 @@
+<div ng-controller="AircraftCtrl as vm" ng-init="vm.retriveAircrafts()">
+  <div class="row">
+    <h3>Aircrafts list</h3>
+
+    <ul class="small-block-grid-4">
+      <li ng-repeat="aircraft in vm.aircrafts">
+          <p>{{aircraft.general.model}}</p>
+          <small><a ui-sref="view({airCraftId: aircraft._id})">{{aircraft._id}}</a></small>
+      </li>
+    </ul>
+
+  </div>
+</div>

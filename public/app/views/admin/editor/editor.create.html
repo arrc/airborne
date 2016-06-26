@@ -6,15 +6,18 @@
 
         <!-- Form -->
         <form ng-submit="vm.createAircraft()">
+          <input type="submit" class="button expand secondary" value="Submit">
           <section onload="vm.toggleConstantsInitialState()" ng-include="'app/views/admin/editor/create.general.html'"></section>
           <section ng-include="'app/views/admin/editor/create.interior.html'"></section>
           <section ng-include="'app/views/admin/editor/create.weight.html'"></section>
           <section ng-include="'app/views/admin/editor/create.dimensions.html'"></section>
           <section ng-include="'app/views/admin/editor/create.performance.html'"></section>
+          <section onload="vm.toggleConstantsInitialState()" ng-include="'app/views/admin/editor/create.powerplant.html'"></section>
+          <input type="submit" class="button expand secondary" value="Submit">
         </form>
 
 
     </div>
   </div>
-  <pre>{{vm.editorFormData}}</pre>
+  <pre>{{vm.editorFormData | json}}</pre>
 </section>

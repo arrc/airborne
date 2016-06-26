@@ -12,7 +12,7 @@ angular.module('Airborne').config(['$stateProvider', function($stateProvider){
     templateUrl: 'app/views/aircraft/aircraft.search.html'
   })
   .state('view', {
-    url: '/view',
+    url: '/aircrafts/:airCraftId',
     templateUrl: 'app/views/aircraft/aircraft.view.html'
   });
 }]);
