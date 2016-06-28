@@ -33,6 +33,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.2",
     "chance": "^0.8.0",
+    "cloudinary": "^1.4.1",
     "consolidate": "^0.13.1",
     "crypto": "0.0.3",
     "express": "^4.14.0",

@@ -60,7 +60,7 @@ let AirCraftSchema = mongoose.Schema({
   },
   images: {
     front:    {image: String, source: String},
-    back:     {image: String, source: String},
+    rear:     {image: String, source: String},
     left:     {image: String, source: String},
     right:    {image: String, source: String},
     top:      {image: String, source: String},

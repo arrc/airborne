@@ -22,6 +22,7 @@
 
     _this.toggleConstantsInitialState = function(){
       let selectors = [
+        "#aircraftCategoriesList",
         "#airCraftManufacturersList",
         "#rolesList",
         "#industriesList",
@@ -69,41 +70,6 @@
         ngNotify.set('Aircraft deleted successfully ', 'error');
       });
     };
-
-    // modal dialog
-    _this.launchModalDialog = function(context, object){
-      var blah = {};
-      var dialog = ngDialog.open({
-        template: 'app/views/admin/editor/modal.constants.html',
-        width: '50%',
-        controllerAs: 'vm',
-        controller: function(){
-          var self = this;
-          self.context = context;
-          self.constants = object;
-        },
-        data: { x: self.selectedItems }
-        // controller: ['$scope', function($scope){
-        //   $scope.constants = object;
-        //   $scope.context = context;
-        //   $scope.model = {};
-        //   // _this.editorFormData.tempData = $scope.model.selectedItems;
-        //
-        // }]
-      });
-    };
-
-
-
-    (function() { //"#airCraftManufacturersList, #rolesList, #industriesList, aircraftTypesList"
-      // let selectors = [
-      //   "#airCraftManufacturersList",
-      //   "#rolesList",
-      //   "#industriesList",
-      //   "#aircraftTypesList"
-      // ].join(',');
-      // angular.element(selectors).slideUp();
-    }());
 	}; // END
 
 	/* ==========================================================

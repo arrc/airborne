@@ -50,9 +50,18 @@
   <!-- categories -->
   <div class="row">
     <div class="large-12 columns">
-      <label for="categories">Categories</label>
-      <input type="text"  ng-click="vm.launchModalDialog('categories', vm.constants.categories)" id="categories" ng-model="vm.editorFormData.general.roles" placeholder="{{vm.editorFormData.general.roles}}">
-      <!-- <p id="categories" ng-model="vm.editorFormData.general.categories">{{ vm.editorFormData.general.categories }}</p> -->
+      <label ng-click="vm.toggleConstantsMenu('aircraftCategoriesList')" for="categories">Categories</label>
+
+      <p ng-click="vm.toggleConstantsMenu('aircraftCategoriesList')"><span ng-repeat="category in vm.editorFormData.general.categories">{{category}}, </span></p>
+
+      <!-- list -->
+      <ul id="aircraftCategoriesList" class="small-block-grid-3">
+          <li ng-repeat="category in vm.constants.categories">
+            <input type="checkbox" id="{{category}}" checklist-model="vm.editorFormData.general.categories" checklist-value="category">
+            <label for="{{category}}">{{category}}</label>
+          </li>
+      </ul>
+
     </div>
   </div>
 
@@ -64,7 +73,7 @@
       <p ng-click="vm.toggleConstantsMenu('airCraftManufacturersList')"><span ng-repeat="manufacturer in vm.editorFormData.general.airCraftManufacturers">{{manufacturer}}, </span></p>
 
       <!-- list -->
-      <ul id="airCraftManufacturersList" class="small-block-grid-4">
+      <ul id="airCraftManufacturersList" class="small-block-grid-3">
           <li ng-repeat="manufacturer in vm.constants.airCraftManufacturers">
             <input type="checkbox" id="{{manufacturer}}" checklist-model="vm.editorFormData.general.airCraftManufacturers" checklist-value="manufacturer">
             <label for="{{manufacturer}}">{{manufacturer}}</label>
