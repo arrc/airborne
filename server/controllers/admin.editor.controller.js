@@ -1,9 +1,14 @@
 'use strict';
 
 let User = require('../models/user.model.js'),
+  config     = require('../config')
   Aircraft = require('../models/aircraft.model'),
   constants = require('../config/constants'),
-  _ = require('lodash');
+  _ = require('lodash'),
+  async = require('async'),
+  url = require('url'),
+  shortid = require('shortid')
+  cloudinary = require('cloudinary');
 
 // Single aircraft
 exports.constants = function(req, res){
@@ -23,6 +28,9 @@ exports.constants = function(req, res){
 //  create aircraft
 exports.createAircraft = function(req, res){
   console.log(req.body);
+
+
+
   Aircraft.create(req.body, function(err, aircraft){
     if (err || !aircraft) {
       return res.status(400).json({error: err, message: 'Error creating aircraft.'});

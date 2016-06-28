@@ -36,6 +36,7 @@
     "cloudinary": "^1.4.1",
     "consolidate": "^0.13.1",
     "crypto": "0.0.3",
+    "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "express-jwt": "^3.4.0",
     "gulp": "^3.9.1",
@@ -50,6 +51,7 @@
     "mongoose": "^4.5.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "shortid": "^2.2.6",
     "swig": "^1.4.2"
   }
 }

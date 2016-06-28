@@ -1,5 +1,5 @@
 'use strict';
-
+require('dotenv').config();
 var express    = require('express'),
 app            = express(),
 config = require('./server/config'),
