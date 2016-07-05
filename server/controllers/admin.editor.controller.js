@@ -1,13 +1,13 @@
 'use strict';
 
 let User = require('../models/user.model.js'),
-  config     = require('../config')
+  config     = require('../config'),
   Aircraft = require('../models/aircraft.model'),
   constants = require('../config/constants'),
   _ = require('lodash'),
   async = require('async'),
   url = require('url'),
-  shortid = require('shortid')
+  shortid = require('shortid'),
   cloudinary = require('cloudinary');
 
 // Single aircraft
@@ -28,17 +28,58 @@ exports.constants = function(req, res){
 //  create aircraft
 exports.createAircraft = function(req, res){
   console.log(req.body);
+  let formData = req.body;
 
+  async.series({
+    uploadImage: function(done){
+      let counter = 0;
+      _.forEach(formData.images, function(value, key){
+        let customId = shortid.generate();
+        let modelName = formData.general.model.split(" ").join("-");
+        let publicId = `airborne/aircrafts/${modelName}/${modelName}-${key}-${customId}`; console.log(publicId);
 
+        cloudinary.config({
+          cloud_name: config.cloudinaryCloudName,
+          api_key: config.cloudinaryApiKey,
+          api_secret: config.cloudinaryApiSecret
+        });
 
-  Aircraft.create(req.body, function(err, aircraft){
-    if (err || !aircraft) {
+        cloudinary.uploader.upload(value, function(res){
+          counter++;
+          if(res.http_code === 400) return done({error: res, message: 'Failed to upload image.'});
+          formData.images[key] = { "image": res.secure_url, "source": url.parse(value).hostname };
+          if(counter === Object.keys(formData.images).length){
+            done(null);
+          }
+        }, {public_id: publicId});
+      });
+
+    },
+    saveInDatabase: function(done){
+      Aircraft.create(formData, function(err, aircraft){
+        if (err || !aircraft) {
+          return done({error: err, message: 'Error creating aircraft.'})
+        }
+        console.log("saveInDatabase \n",aircraft);
+        done(null, { data: aircraft, message: 'success'})
+      });
+    }
+  }, function(err, results){
+    if (err) {
       return res.status(400).json({error: err, message: 'Error creating aircraft.'});
     } else {
-      console.log(aircraft);
-      return res.status(200).json({ data: aircraft, message: 'success'});
+      return res.status(200).json(results.saveInDatabase);
     }
   });
+
+  // Aircraft.create(req.body, function(err, aircraft){
+  //   if (err || !aircraft) {
+  //     return res.status(400).json({error: err, message: 'Error creating aircraft.'});
+  //   } else {
+  //     console.log(aircraft);
+  //     return res.status(200).json({ data: aircraft, message: 'success'});
+  //   }
+  // });
 };
 
 // update aircraft
