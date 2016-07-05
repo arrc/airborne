@@ -2,7 +2,7 @@
 
 let User = require('../models/user.model.js'),
   config     = require('../config'),
-  Aircraft = require('../models/aircraft.model'),
+  Gallery = require('../models/gallery.model'),
   constants = require('../config/constants'),
   _ = require('lodash'),
   async = require('async'),
@@ -25,20 +25,30 @@ exports.constants = function(req, res){
   return res.status(200).json({ data: sortedConstants, message: 'success'});
 };
 
-//  create aircraft
-exports.createAircraft = function(req, res){
+//  uplaod aircraft
+exports.uploadImage = function(req, res){
   console.log(req.body);
   let formData = req.body;
 
   async.series({
     generateSlug: function(done){
       let slugId = shortid.generate();
-      let modelName = formData.general.model.split(" ").join("-");
-      _.assign(formData, { meta: { slug: `${modelName}-${slugId}` } })
-      // formData["slug"] = `${modelName}-${slugId}`;
+      if(b.modelName) {
+        let modelName = formData.general.model.split(" ").join("-");
+        formData["slug"] = `${req.user.username}/${modelName}-${slugId}`;
+      } else{
+        formData["slug"] = `${req.user.username}/${slugId}`;
+      }
     },
     uploadImage: function(done){
-      let counter = 0;
+      let customId = shortid.generate();
+      let modelName = formData.general.model.split(" ").join("-");
+      if(b.modelName){
+        let publicId = `airborne/gallery/${modelName}/${req.user.username}-${modelName}-${customId}`;
+      } else {
+        let publicId = `airborne/gallery/unknown/${req.user.username}-${customId}`;
+      }
+
       _.forEach(formData.images, function(value, key){
         let customId = shortid.generate();
         let modelName = formData.general.model.split(" ").join("-");
@@ -62,7 +72,7 @@ exports.createAircraft = function(req, res){
 
     },
     saveInDatabase: function(done){
-      Aircraft.create(formData, function(err, aircraft){
+      Gallery.create(formData, function(err, aircraft){
         if (err || !aircraft) {
           return done({error: err, message: 'Error creating aircraft.'})
         }
@@ -77,38 +87,17 @@ exports.createAircraft = function(req, res){
       return res.status(200).json(results.saveInDatabase);
     }
   });
-
-  // Aircraft.create(req.body, function(err, aircraft){
-  //   if (err || !aircraft) {
-  //     return res.status(400).json({error: err, message: 'Error creating aircraft.'});
-  //   } else {
-  //     console.log(aircraft);
-  //     return res.status(200).json({ data: aircraft, message: 'success'});
-  //   }
-  // });
 };
 
-// update aircraft
-exports.updateAircraft = function(req, res){
-  var aircraft = req.aircraft;
-  aircraft = _.extend(aircraft, req.body);
-  aircraft.save(function(err, doc){
-    if (err || !doc) {
-      return res.status(400).json({message: 'Error finding aircraft.'});
-    } else {
-      return res.status(200).json({ data: doc, message: 'success'});
-    }
-  });
-};
 
 // Single aircraft
-exports.retriveAircraft = function(req, res){
-  return res.status(200).json({ data: req.aircraft, message: 'success'});
+exports.retriveImage = function(req, res){
+  return res.status(200).json({ data: req.galleryImage, message: 'success'});
 };
 
 // All aircraft
-exports.retriveAircrafts = function(req, res){
-  Aircraft.find({}).exec(function(err, aircraft){
+exports.retriveImages = function(req, res){
+  Gallery.find({}).exec(function(err, aircraft){
     if (err || !aircraft) {
       return res.status(400).json({message: 'Error finding aircraft.'});
     } else {
@@ -117,24 +106,13 @@ exports.retriveAircrafts = function(req, res){
   });
 };
 
-// Delete aircraft
-exports.deleteAircraft = function(req, res){
-  var aircraft = req.aircraft;
-  aircraft.remove(function(err){
-    if (err) {
-      return res.status(400).json({message: 'Error deleting aircraft.'});
-    } else {
-      return res.status(200).json({ message: 'successfully deleted aircraft'});
-    }
-  });
-};
 
 // airCraftId
-exports.airCraftId = function(req, res, next, airCraftId){
-  Aircraft.findById(airCraftId).exec(function(err, doc){
+exports.getBySlug = function(req, res, next, slug){
+  Gallery.findOne({slug: slug}).exec(function(err, doc){
     if (err) return next(err);
-		if (!doc) return next(new Error('Failed to load aircraft ' + airCraftId));
-		req.aircraft = doc;
+		if (!doc) return next(new Error('Failed to load aircraft ' + slug));
+		req.galleryImage = doc;
 		next();
   });
 };

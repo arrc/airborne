@@ -2,7 +2,10 @@
 var mongoose = require('mongoose');
 
 let AirCraftSchema = mongoose.Schema({
-  test: String,
+  meta:{
+    slug: String,
+    favCount: {type: Number, default: 0}
+  },
   general: {
     model:                String,
     description:          String,

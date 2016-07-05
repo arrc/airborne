@@ -8,6 +8,7 @@ let User = require('../models/user.model.js'),
 
 
 exports.getAircrafts = function(req, res){
+
   Aircraft.find({}).exec(function(err, airCraftDocs){
     if (err || !airCraftDocs) {
       return res.status(400).json({message: 'Error finding Aircrafts.'});
@@ -32,6 +33,10 @@ exports.searchAircrafts = function(req, res){
 
 };
 
+exports.favAircraft = function(req,res){
+  
+};
+
 exports.profile = function(req, res){
   User.findOne({'username': req.user.username}).exec(function(err, userDoc){
     if (err || !userDoc) {
@@ -41,5 +46,15 @@ exports.profile = function(req, res){
       var data = _.omit(userDocJson, 'password');
       res.status(200).json({ data: data, message: 'success'});
     }
+  });
+};
+
+// airCraftId
+exports.airCraftId = function(req, res, next, airCraftId){
+  Aircraft.findById(airCraftId).exec(function(err, doc){
+    if (err) return next(err);
+		if (!doc) return next(new Error('Failed to load aircraft ' + airCraftId));
+		req.aircraft = doc;
+		next();
   });
 };

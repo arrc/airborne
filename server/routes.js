@@ -5,6 +5,7 @@ module.exports = function(app){
 	var user = require('./controllers/user.controller.js');
 	var admin = require('./controllers/admin.controller');
 	var aircraft = require('./controllers/aircraft.controller');
+	var gallery = require('./controllers/gallery.controller');
 	var editor = require('./controllers/admin.editor.controller');
 
 	// 'CORE' ----------------------------
@@ -17,8 +18,17 @@ module.exports = function(app){
 
 	// 'AIRCRAFT'
 	app.route('/api/aircrafts').get(aircraft.getAircrafts);
-	app.route('/api/aircrafts/:airCraftId').get(aircraft.getAircraft);
 	app.route('/api/aircrafts/search').get(aircraft.searchAircrafts);
+	app.route('/api/aircrafts/:airCraftId').get(aircraft.getAircraft);
+	app.route('/api/aircrafts/:airCraftId').put(aircraft.favAircraft);
+	app.param('airCraftId', aircraft.airCraftId);
+
+	// 'GALLERY'
+	app.route('/api/gallery/constants').get(gallery.constants);
+	app.route('/api/gallery').get(gallery.retriveImages);
+	app.route('/api/gallery').post(gallery.uploadImage);
+	app.route('/api/gallery/:slug').get(gallery.retriveImage);
+	app.param('slug', gallery.getBySlug);
 
 	// ADMIN
 	app.use('/api/admin', admin.hasAuthorization);

@@ -6,7 +6,11 @@ var mongoose = require('mongoose'),
 let UserSchema =  mongoose.Schema({
   username: String,
   password: String,
+  gender: String,
   email: String,
+  bio: String,
+  profileImageUrl: String,
+  favourites: [{type: String, ref: 'Aircraft'}],
   isActive: {type: Boolean, default: false},
   isAdmin: {type: Boolean, default: false},
 });
