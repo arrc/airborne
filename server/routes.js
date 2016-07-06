@@ -17,9 +17,9 @@ module.exports = function(app){
 	app.route('/api/profile').get(user.profile);
 
 	// 'AIRCRAFT'
-	app.route('/api/aircrafts').get(aircraft.getAircrafts);
-	app.route('/api/aircrafts/search').get(aircraft.searchAircrafts);
-	app.route('/api/aircrafts/:airCraftId').get(aircraft.getAircraft);
+	app.route('/aircrafts').get(aircraft.getAircrafts);
+	app.route('/aircrafts/search').get(aircraft.searchAircrafts);
+	app.route('/aircrafts/:airCraftId').get(aircraft.getAircraft);
 	app.route('/api/aircrafts/:airCraftId').put(aircraft.favAircraft);
 	app.param('airCraftId', aircraft.airCraftId);
 

@@ -8,7 +8,6 @@ let User = require('../models/user.model.js'),
 
 
 exports.getAircrafts = function(req, res){
-
   Aircraft.find({}).exec(function(err, airCraftDocs){
     if (err || !airCraftDocs) {
       return res.status(400).json({message: 'Error finding Aircrafts.'});
@@ -33,8 +32,22 @@ exports.searchAircrafts = function(req, res){
 
 };
 
+// this is terribely fucked-up, needs rewrite!
 exports.favAircraft = function(req,res){
-  
+  let aircraft = req.aircraft;
+  User.findById(req.user._id).exec(function(err, userDoc){
+    userDoc.favourites = aircraft._id;
+    userDoc.save(function(err, updatedUserDoc){
+      // aircraft.meta.favCount += 1;
+      aircraft.update({ $inc : { 'meta.favCount' : 1 } }, function(err, updated ,doc){
+        if (err || !doc) {
+          return res.status(400).json({error: err, message: 'Error updating Aircraft.'});
+        } else {
+          res.status(200).json({ data: doc, user: updatedUserDoc,  message: 'success'});
+        }
+      });
+    })// userDoc
+  })// User
 };
 
 exports.profile = function(req, res){
