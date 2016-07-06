@@ -50,18 +50,11 @@
   <!-- categories -->
   <div class="row">
     <div class="large-12 columns">
-      <label ng-click="vm.toggleConstantsMenu('aircraftCategoriesList')" for="categories">Categories</label>
-
-      <p ng-click="vm.toggleConstantsMenu('aircraftCategoriesList')"><span ng-repeat="category in vm.editorFormData.general.categories">{{category}}, </span></p>
-
-      <!-- list -->
-      <ul id="aircraftCategoriesList" class="small-block-grid-3">
-          <li ng-repeat="category in vm.constants.categories">
-            <input type="checkbox" id="{{category}}" checklist-model="vm.editorFormData.general.categories" checklist-value="category">
-            <label for="{{category}}">{{category}}</label>
-          </li>
-      </ul>
-
+      <label for="category">Category
+        <select id="category" ng-model="vm.editorFormData.general.category">
+          <option ng-repeat="category in vm.constants.categories" value="{{category}}">{{category}}</option>
+        </select>
+      </label>
     </div>
   </div>
 

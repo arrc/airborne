@@ -22,7 +22,6 @@
 
     _this.toggleConstantsInitialState = function(){
       let selectors = [
-        "#aircraftCategoriesList",
         "#airCraftManufacturersList",
         "#rolesList",
         "#industriesList",

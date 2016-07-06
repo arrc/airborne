@@ -13,7 +13,7 @@ let AirCraftSchema = mongoose.Schema({
     maidenFlight:         Number,
     series:               String,
     productionStatus:     String,
-    categories:             [String],
+    category:             String,
     airCraftManufacturers: [String],
     roles:                 [String],
     industries:             [String],
