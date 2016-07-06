@@ -29,7 +29,24 @@ exports.getAircraft = function(req, res){
 }
 
 exports.searchAircrafts = function(req, res){
-
+  let searchTerm = new RegExp(req.query.q, 'i'); console.log(req.query.q, searchTerm);
+  Aircraft.find({ 'general.model' : new RegExp(req.query.q,'i')//, 'general.categories':  new RegExp(req.query.q,'i'),
+    // '$or': [
+    //   { 'general.model': searchTerm,
+    //     'general.series': searchTerm,
+    //     'general.category': searchTerm,
+    //     'general.airCraftManufacturers': searchTerm,
+    //     'general.roles': searchTerm,
+    //     'general.industries': searchTerm,
+    //     'general.aircraftTypes': searchTerm
+    //   }]
+  }).exec(function(err, airCraftDocs){
+    if (err || !airCraftDocs) {
+      return res.status(400).json({message: 'Error finding Aircraft.'});
+    } else {
+      res.status(200).json({ data: airCraftDocs, message: 'success'});
+    }
+  })
 };
 
 // this is terribely fucked-up, needs rewrite!

@@ -119,10 +119,10 @@
       <p ng-click="vm.toggleConstantsMenu('aircraftTypesList')"><span ng-repeat="type in vm.editorFormData.general.aircraftTypes">{{type}}, </span></p>
 
       <!-- list -->
-      <ul id="aircraftTypesList" class="small-block-grid-4">
+      <ul id="aircraftTypesList" class="small-block-grid-3">
           <li ng-repeat="type in vm.constants.aircraftTypes">
-            <input type="checkbox" id="{{type}}" checklist-model="vm.editorFormData.general.aircraftTypes" checklist-value="type">
-            <label for="{{type}}">{{type}}</label>
+            <input type="checkbox" id="aircraftType-{{type}}" checklist-model="vm.editorFormData.general.aircraftTypes" checklist-value="type">
+            <label for="aircraftType-{{type}}">{{type}}</label>
           </li>
       </ul>
 
