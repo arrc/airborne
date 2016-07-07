@@ -4,6 +4,7 @@ let User = require('../models/user.model.js'),
   config = require('../config'),
   jwt = require('jsonwebtoken'),
   Aircraft = require('../models/aircraft.model'),
+  async = require('async'),
   _ = require('lodash');
 
 
@@ -51,20 +52,56 @@ exports.searchAircrafts = function(req, res){
 
 // this is terribely fucked-up, needs rewrite!
 exports.favAircraft = function(req,res){
+  let fav = req.query.fav;
   let aircraft = req.aircraft;
-  User.findById(req.user._id).exec(function(err, userDoc){
-    userDoc.favourites = aircraft._id;
-    userDoc.save(function(err, updatedUserDoc){
-      // aircraft.meta.favCount += 1;
-      aircraft.update({ $inc : { 'meta.favCount' : 1 } }, function(err, updated ,doc){
-        if (err || !doc) {
-          return res.status(400).json({error: err, message: 'Error updating Aircraft.'});
+
+  switch (fav) {
+    case "true":
+      performFavOperation(true);
+      break;
+
+    case "false":
+      performFavOperation(false);
+      break;
+
+    default:
+      res.status(200).json({ message: 'please provide input.'});
+  }
+
+  function performFavOperation(fav){
+    async.series({
+      "updateUser": function(done){
+        User.findById(req.user._id).exec( (err, doc)=> {
+          if(fav){
+            doc.favourites.addToSet(aircraft._id);
+          } else {
+            doc.favourites.pull(aircraft._id);
+          }
+          doc.save((err, doc, numAffected) => { // numAffected - will return 0 or 1
+            if(err || !numAffected) return done({error: err, message: "Failed to set as favourite."});
+            done(null, {data: doc, success: true});
+          })
+        })
+      },
+      "updateAircraft": function(done){
+        // let operator = fav ? '$inc' : '$dec'; console.log(operator);
+        if(fav){
+          aircraft.update({ $inc : { 'meta.favCount' : 1 } }).exec((err, updated) =>{ console.log(updated);
+            if(err || !updated.ok) return done({error: err, message: "Failed to set this aircraft as favourite."});
+            done(null, {success: true});
+          })
         } else {
-          res.status(200).json({ data: doc, user: updatedUserDoc,  message: 'success'});
+          aircraft.update({ $dec : { 'meta.favCount' : 1 } }).exec((err, updated) =>{ console.log(updated);
+            if(err || !updated.ok) return done({error: err, message: "Failed to unfav this aircraft ."});
+            done(null, {success: true});
+          })
         }
-      });
-    })// userDoc
-  })// User
+      }
+    }, function(err, response){
+      if(err) return res.status(400).json(err);
+      return res.status(200).json(response);
+    })
+  }
 };
 
 exports.profile = function(req, res){
