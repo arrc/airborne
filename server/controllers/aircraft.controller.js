@@ -86,15 +86,27 @@ exports.favAircraft = function(req,res){
       "updateAircraft": function(done){
         // let operator = fav ? '$inc' : '$dec'; console.log(operator);
         if(fav){
-          aircraft.update({ $inc : { 'meta.favCount' : 1 } }).exec((err, updated) =>{ console.log(updated);
-            if(err || !updated.ok) return done({error: err, message: "Failed to set this aircraft as favourite."});
+          console.log(aircraft.meta.favCount);
+          aircraft.meta.favCount += 1;
+          aircraft.save((err, doc, numAffected) => {
+            if(err || !numAffected) return done({error: err, message: "Failed to set this aircraft as favourite."});
             done(null, {success: true});
-          })
+          });
+          // aircraft.update({ $inc : { 'meta.favCount' : 1 } }).exec((err, updated) =>{ console.log(updated);
+          //   if(err || !updated.ok) return done({error: err, message: "Failed to set this aircraft as favourite."});
+          //   done(null, {success: true});
+          // })
         } else {
-          aircraft.update({ $dec : { 'meta.favCount' : 1 } }).exec((err, updated) =>{ console.log(updated);
-            if(err || !updated.ok) return done({error: err, message: "Failed to unfav this aircraft ."});
+
+          aircraft.meta.favCount -= aircraft.meta.favCount > 0 ? -1 : 0;
+          aircraft.save((err, doc, numAffected) => {
+            if(err || !numAffected) return done({error: err, message: "Failed to unfav this aircraft."});
             done(null, {success: true});
-          })
+          });
+          // aircraft.update({ $inc : { 'meta.favCount' : -1 } }).exec((err, updated) =>{ console.log(updated);
+          //   if(err || !updated.ok) return done({error: err, message: "Failed to unfav this aircraft ."});
+          //   done(null, {success: true});
+          // })
         }
       }
     }, function(err, response){
